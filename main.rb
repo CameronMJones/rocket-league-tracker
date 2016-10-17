@@ -1,4 +1,4 @@
 require 'sinatra'
 get '/' do
-"Hello Cam"
+  erb :index
 end
