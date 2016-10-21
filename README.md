@@ -5,3 +5,4 @@ Step 4 - Install Postgres (recommend getting postgres commander)
 Step 5 - Start Postgres
 Step 6 - Set Postgres user variables.
 Step 7 - run rake db:migrate
+Step 8 - run ruby app.rb
