@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<% require 'pg' %>
+
+<head>
+</head>
+<body>
+  <div>
+    <h1>Hello Carson!</h1>
+
+    <!-- ############################### -->
+    <!-- ######## START PART 1 ######### -->
+    <!-- ############################### -->
+    <!-- Here is how we add ruby into HTML -->
+    <% 
+      # Inside of these symbols you can do anything you want! However, none of it will
+      # show up Vinside of the webpage. Like this comment!
+      @peoples_names = ['cam','carson','josh','mike']
+    %>
+    <% for @person in @peoples_names %>
+    <%=
+      # If you add an = sign to the symbol, you can then print it to the webpage!
+      @person 
+    %>
+    <!-- New Line -->
+    </br>
+    <% end %>
+    <!-- ############################### -->
+    <!-- ######### END PART 1 ########## -->
+    <!-- ############################### -->
+
+    <!-- ############################### -->
+    <!-- ######## START PART 2 ######### -->
+    <!-- ############################### -->
+    <!-- Here is how we read from the database -->
+    <%
+      begin
+      #Connect to the Database
+      con = PG.connect :dbname => 'development', :user => 'jones'
+
+      #Run a query!
+      rs = con.exec 'SELECT * from users;'
+    %>
+
+    <%=
+      #Print all the values of the query!
+      rs.values
+    %>
+
+    <%
+      #Rescue it if it fails
+      rescue PG::Error => e
+    %>
+
+    <%=
+      #If there is an error, print it
+      e
+    %>
+
+    <%
+      #Ensure the connection is closed
+      ensure
+        con.close if con
+      end
+    %>
+    <!-- ############################### -->
+    <!-- ######### END PART 2 ########## -->
+    <!-- ############################### -->
+  </div>
+</body>

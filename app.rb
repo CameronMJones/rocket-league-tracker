@@ -7,3 +7,7 @@ require './models/user.rb'
 get '/' do
   erb :index
 end
+
+get '/example' do
+  erb :example
+end
